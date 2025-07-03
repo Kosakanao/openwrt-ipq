@@ -16,7 +16,11 @@ Signed-off-by: Anilkumar Kolli <quic_akolli@quicinc.com>
 
 --- a/drivers/net/wireless/ath/ath11k/dp_rx.c
 +++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+<<<<<<< HEAD
 @@ -6012,12 +6012,23 @@ int ath11k_dp_rx_process_mon_status(stru
+=======
+@@ -6021,12 +6021,23 @@ int ath11k_dp_rx_process_mon_status(stru
+>>>>>>> 2260t/qualcommax_6.12
  			}
  		}
  
@@ -43,7 +47,11 @@ Signed-off-by: Anilkumar Kolli <quic_akolli@quicinc.com>
  		rcu_read_lock();
  		spin_lock_bh(&ab->base_lock);
  		peer = ath11k_peer_find_by_id(ab, ppdu_info->peer_id);
+<<<<<<< HEAD
 @@ -6341,6 +6352,13 @@ static int ath11k_dp_full_mon_process_rx
+=======
+@@ -6350,6 +6361,13 @@ static int ath11k_dp_full_mon_process_rx
+>>>>>>> 2260t/qualcommax_6.12
  
  	spin_lock_bh(&pmon->mon_lock);
  
@@ -57,7 +65,11 @@ Signed-off-by: Anilkumar Kolli <quic_akolli@quicinc.com>
  	sw_mon_entries = &pmon->sw_mon_entries;
  	rx_mon_stats = &pmon->rx_mon_stats;
  
+<<<<<<< HEAD
 @@ -6380,7 +6398,6 @@ static int ath11k_dp_full_mon_process_rx
+=======
+@@ -6389,7 +6407,6 @@ static int ath11k_dp_full_mon_process_rx
+>>>>>>> 2260t/qualcommax_6.12
  		}
  
  		rx_mon_stats->dest_ppdu_done++;
@@ -65,7 +77,11 @@ Signed-off-by: Anilkumar Kolli <quic_akolli@quicinc.com>
  		pmon->buf_state = DP_MON_STATUS_LAG;
  		pmon->mon_status_paddr = sw_mon_entries->mon_status_paddr;
  		pmon->hold_mon_dst_ring = true;
+<<<<<<< HEAD
 @@ -6411,16 +6428,10 @@ reap_status_ring:
+=======
+@@ -6420,16 +6437,10 @@ reap_status_ring:
+>>>>>>> 2260t/qualcommax_6.12
  int ath11k_dp_rx_process_mon_rings(struct ath11k_base *ab, int mac_id,
  				   struct napi_struct *napi, int budget)
  {

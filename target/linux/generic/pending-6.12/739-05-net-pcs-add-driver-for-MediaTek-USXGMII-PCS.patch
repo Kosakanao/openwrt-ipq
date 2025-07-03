@@ -506,7 +506,11 @@ Signed-off-by: Daniel Golle <daniel@makrotopia.org>
 +		.of_match_table		= mtk_usxgmii_of_mtable,
 +	},
 +	.probe = mtk_usxgmii_probe,
+<<<<<<< HEAD
 +	.remove_new = mtk_usxgmii_remove,
+=======
++	.remove = mtk_usxgmii_remove,
+>>>>>>> 2260t/qualcommax_6.12
 +};
 +module_platform_driver(mtk_usxgmii_driver);
 +

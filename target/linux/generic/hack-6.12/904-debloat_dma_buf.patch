@@ -9,8 +9,12 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  drivers/dma-buf/Makefile  | 10 +++++++---
  drivers/dma-buf/dma-buf.c |  4 +++-
  kernel/sched/core.c       |  1 +
+<<<<<<< HEAD
  net/Kconfig               |  2 +-
  5 files changed, 13 insertions(+), 6 deletions(-)
+=======
+ 4 files changed, 12 insertions(+), 5 deletions(-)
+>>>>>>> 2260t/qualcommax_6.12
 
 --- a/drivers/base/Kconfig
 +++ b/drivers/base/Kconfig
@@ -74,7 +78,11 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
 +MODULE_LICENSE("GPL");
 --- a/kernel/sched/core.c
 +++ b/kernel/sched/core.c
+<<<<<<< HEAD
 @@ -4428,6 +4428,7 @@ int wake_up_state(struct task_struct *p,
+=======
+@@ -4419,6 +4419,7 @@ int wake_up_state(struct task_struct *p,
+>>>>>>> 2260t/qualcommax_6.12
  {
  	return try_to_wake_up(p, state, 0);
  }
@@ -92,6 +100,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  
  char *simple_dname(struct dentry *dentry, char *buffer, int buflen)
  {
+<<<<<<< HEAD
 --- a/net/Kconfig
 +++ b/net/Kconfig
 @@ -74,7 +74,7 @@ config SKB_EXTENSIONS
@@ -103,3 +112,5 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	depends on GENERIC_ALLOCATOR
  	depends on PAGE_POOL
  
+=======
+>>>>>>> 2260t/qualcommax_6.12

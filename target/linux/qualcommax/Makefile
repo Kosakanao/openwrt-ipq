@@ -8,7 +8,12 @@ KERNELNAME:=Image
 CPU_TYPE:=cortex-a53
 SUBTARGETS:=ipq807x ipq60xx ipq50xx
 
+<<<<<<< HEAD
 KERNEL_PATCHVER:=6.12
+=======
+KERNEL_PATCHVER:=6.6
+KERNEL_TESTING_PATCHVER:=6.12
+>>>>>>> 2260t/qualcommax_6.12
 
 include $(INCLUDE_DIR)/target.mk
 DEFAULT_PACKAGES += \
@@ -18,6 +23,10 @@ DEFAULT_PACKAGES += \
 	wpad-basic-mbedtls uboot-envtools \
 	e2fsprogs kmod-fs-ext4 losetup \
 	kmod-qca-nss-drv kmod-qca-nss-ecm \
+<<<<<<< HEAD
 	kmod-qca-nss-drv-bridge-mgr
+=======
+	losetup kmod-qca-nss-drv-bridge-mgr cpufreq
+>>>>>>> 2260t/qualcommax_6.12
 
 $(eval $(call BuildTarget))

@@ -23,37 +23,69 @@ Signed-off-by: Robert Marko <robimarko@gmail.com>
  	#address-cells = <2>;
 @@ -38,6 +39,8 @@
  			reg = <0x0>;
+<<<<<<< HEAD
  			next-level-cache = <&l2_0>;
+=======
+ 			next-level-cache = <&L2_0>;
+>>>>>>> 2260t/qualcommax_6.12
  			enable-method = "psci";
 +			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
 +			clock-names = "cpu";
  		};
  
+<<<<<<< HEAD
  		cpu1: cpu@1 {
 @@ -46,6 +49,8 @@
  			enable-method = "psci";
  			reg = <0x1>;
  			next-level-cache = <&l2_0>;
+=======
+ 		CPU1: cpu@1 {
+@@ -46,6 +49,8 @@
+ 			enable-method = "psci";
+ 			reg = <0x1>;
+ 			next-level-cache = <&L2_0>;
+>>>>>>> 2260t/qualcommax_6.12
 +			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
 +			clock-names = "cpu";
  		};
  
+<<<<<<< HEAD
  		cpu2: cpu@2 {
 @@ -54,6 +59,8 @@
  			enable-method = "psci";
  			reg = <0x2>;
  			next-level-cache = <&l2_0>;
+=======
+ 		CPU2: cpu@2 {
+@@ -54,6 +59,8 @@
+ 			enable-method = "psci";
+ 			reg = <0x2>;
+ 			next-level-cache = <&L2_0>;
+>>>>>>> 2260t/qualcommax_6.12
 +			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
 +			clock-names = "cpu";
  		};
  
+<<<<<<< HEAD
  		cpu3: cpu@3 {
 @@ -62,6 +69,8 @@
  			enable-method = "psci";
  			reg = <0x3>;
  			next-level-cache = <&l2_0>;
+=======
+ 		CPU3: cpu@3 {
+@@ -62,6 +69,8 @@
+ 			enable-method = "psci";
+ 			reg = <0x3>;
+ 			next-level-cache = <&L2_0>;
+>>>>>>> 2260t/qualcommax_6.12
 +			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
 +			clock-names = "cpu";
  		};
  
+<<<<<<< HEAD
  		l2_0: l2-cache {
+=======
+ 		L2_0: l2-cache {
+>>>>>>> 2260t/qualcommax_6.12

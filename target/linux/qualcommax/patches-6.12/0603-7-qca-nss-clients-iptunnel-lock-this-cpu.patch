@@ -1,6 +1,10 @@
 --- a/net/ipv6/ip6_tunnel.c
 +++ b/net/ipv6/ip6_tunnel.c
+<<<<<<< HEAD
 @@ -2418,7 +2418,7 @@ nla_put_failure:
+=======
+@@ -2417,7 +2417,7 @@ nla_put_failure:
+>>>>>>> 2260t/qualcommax_6.12
   */
  void ip6_update_offload_stats(struct net_device *dev, void *ptr)
  {
@@ -11,7 +15,11 @@
  
 --- a/net/ipv6/sit.c
 +++ b/net/ipv6/sit.c
+<<<<<<< HEAD
 @@ -1738,7 +1738,7 @@ nla_put_failure:
+=======
+@@ -1737,7 +1737,7 @@ nla_put_failure:
+>>>>>>> 2260t/qualcommax_6.12
  /* QCA NSS Clients Support - Start */
  void ipip6_update_offload_stats(struct net_device *dev, void *ptr)
  {

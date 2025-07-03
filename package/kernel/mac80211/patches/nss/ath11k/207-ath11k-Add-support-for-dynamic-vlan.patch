@@ -21,7 +21,11 @@ Signed-off-by: Seevalamuthu Mariappan <seevalam@codeaurora.org>
 
 --- a/drivers/net/wireless/ath/ath11k/core.h
 +++ b/drivers/net/wireless/ath/ath11k/core.h
+<<<<<<< HEAD
 @@ -125,6 +125,7 @@ struct ath11k_skb_cb {
+=======
+@@ -122,6 +122,7 @@ struct ath11k_skb_cb {
+>>>>>>> 2260t/qualcommax_6.12
  	u32 cipher;
  	struct ath11k *ar;
  	struct ieee80211_vif *vif;

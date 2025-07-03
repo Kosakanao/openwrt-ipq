@@ -76,7 +76,11 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	if ((ret & NETIF_F_GSO_ENCAP_ALL) && (ret & NETIF_F_CSUM_MASK))
 --- a/net/8021q/vlan_dev.c
 +++ b/net/8021q/vlan_dev.c
+<<<<<<< HEAD
 @@ -538,7 +538,7 @@ static int vlan_dev_init(struct net_devi
+=======
+@@ -561,7 +561,7 @@ static int vlan_dev_init(struct net_devi
+>>>>>>> 2260t/qualcommax_6.12
  		dev->state |= (1 << __LINK_STATE_NOCARRIER);
  
  	dev->hw_features = NETIF_F_HW_CSUM | NETIF_F_SG |
@@ -85,7 +89,11 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  			   NETIF_F_GSO_ENCAP_ALL |
  			   NETIF_F_HIGHDMA | NETIF_F_SCTP_CRC |
  			   NETIF_F_FCOE_CRC | NETIF_F_FSO;
+<<<<<<< HEAD
 @@ -634,7 +634,7 @@ static netdev_features_t vlan_dev_fix_fe
+=======
+@@ -657,7 +657,7 @@ static netdev_features_t vlan_dev_fix_fe
+>>>>>>> 2260t/qualcommax_6.12
  	if (lower_features & (NETIF_F_IP_CSUM|NETIF_F_IPV6_CSUM))
  		lower_features |= NETIF_F_HW_CSUM;
  	features = netdev_intersect_features(features, lower_features);
@@ -96,7 +104,11 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  }
 --- a/net/core/sock.c
 +++ b/net/core/sock.c
+<<<<<<< HEAD
 @@ -2533,7 +2533,7 @@ void sk_setup_caps(struct sock *sk, stru
+=======
+@@ -2528,7 +2528,7 @@ void sk_setup_caps(struct sock *sk, stru
+>>>>>>> 2260t/qualcommax_6.12
  	if (sk_is_tcp(sk))
  		sk->sk_route_caps |= NETIF_F_GSO;
  	if (sk->sk_route_caps & NETIF_F_GSO)
@@ -107,7 +119,11 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	if (sk_can_gso(sk)) {
 --- a/net/mac80211/ieee80211_i.h
 +++ b/net/mac80211/ieee80211_i.h
+<<<<<<< HEAD
 @@ -2012,7 +2012,7 @@ void ieee80211_color_collision_detection
+=======
+@@ -2010,7 +2010,7 @@ void ieee80211_color_collision_detection
+>>>>>>> 2260t/qualcommax_6.12
  /* interface handling */
  #define MAC80211_SUPPORTED_FEATURES_TX	(NETIF_F_IP_CSUM | NETIF_F_IPV6_CSUM | \
  					 NETIF_F_HW_CSUM | NETIF_F_SG | \

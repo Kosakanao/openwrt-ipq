@@ -1,7 +1,11 @@
 /*
  * Copyright (c) 2013-2017, The Linux Foundation. All rights reserved.
  *
+<<<<<<< HEAD
  * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+=======
+ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+>>>>>>> 2260t/qualcommax_6.12
  *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -24,7 +28,11 @@
 #include <linux/module.h>
 #include <linux/types.h>
 #include <linux/cpu.h>
+<<<<<<< HEAD
 #include <linux/version.h>
+=======
+#include <linux/module.h>
+>>>>>>> 2260t/qualcommax_6.12
 #include <linux/types.h>
 #include <linux/kernel.h>
 #include <linux/mm.h>
@@ -43,6 +51,12 @@
 #include <linux/prefetch.h>
 #include <linux/if.h>
 
+<<<<<<< HEAD
+=======
+#ifndef CONFIG_SKB_RECYCLE_SIZE
+#define CONFIG_SKB_RECYCLE_SIZE 2304
+#endif
+>>>>>>> 2260t/qualcommax_6.12
 #define SKB_RECYCLE_SIZE	CONFIG_SKB_RECYCLE_SIZE
 #define SKB_RECYCLE_MIN_SIZE	SKB_RECYCLE_SIZE
 #define SKB_RECYCLE_MAX_SIZE	SKB_RECYCLE_SIZE
@@ -72,6 +86,7 @@ struct global_recycler {
 };
 #endif
 
+<<<<<<< HEAD
 #ifdef CONFIG_SMP
 static __always_inline int get_cpu_index(void)
 {
@@ -85,6 +100,8 @@ int get_cpu_index(void)
 }
 #endif
 
+=======
+>>>>>>> 2260t/qualcommax_6.12
 static __always_inline void zero_struct(void *v, int size)
 {
 	u32 *s = (u32 *)v;
@@ -172,10 +189,15 @@ static inline bool consume_skb_can_recycle(const struct sk_buff *skb,
 	if (unlikely(skb_pfmemalloc(skb)))
 		return false;
 
+<<<<<<< HEAD
 #ifdef CONFIG_SKB_EXTENSIONS
 	if (skb->active_extensions)
 		return false;
 #endif
+=======
+	if (skb->active_extensions)
+		return false;
+>>>>>>> 2260t/qualcommax_6.12
 
 	return true;
 }

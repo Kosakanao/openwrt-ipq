@@ -123,7 +123,11 @@ $(eval $(call KernelPackage,atl1e))
 define KernelPackage/libie
   SUBMENU:=$(NETWORK_DEVICES_MENU)
   TITLE:=Intel Ethernet library
+<<<<<<< HEAD
   DEPENDS:=@!LINUX_6_6 +kmod-libeth
+=======
+  DEPENDS:=@!LINUX_6_6
+>>>>>>> 2260t/qualcommax_6.12
   KCONFIG:=CONFIG_LIBIE
   HIDDEN:=1
   FILES:=$(LINUX_DIR)/drivers/net/ethernet/intel/libie/libie.ko
@@ -1230,7 +1234,11 @@ $(eval $(call KernelPackage,ixgbevf))
 define KernelPackage/i40e
   SUBMENU:=$(NETWORK_DEVICES_MENU)
   TITLE:=Intel(R) Ethernet Controller XL710 Family support
+<<<<<<< HEAD
   DEPENDS:=@PCI_SUPPORT +kmod-ptp +!LINUX_6_6:kmod-libie
+=======
+  DEPENDS:=@PCI_SUPPORT +kmod-mdio +kmod-ptp +kmod-hwmon-core +kmod-libphy +!LINUX_6_6:kmod-libie
+>>>>>>> 2260t/qualcommax_6.12
   KCONFIG:=CONFIG_I40E \
     CONFIG_I40E_DCB=y
   FILES:=$(LINUX_DIR)/drivers/net/ethernet/intel/i40e/i40e.ko
@@ -1266,7 +1274,11 @@ $(eval $(call KernelPackage,ice))
 define KernelPackage/iavf
   SUBMENU:=$(NETWORK_DEVICES_MENU)
   TITLE:=Intel(R) Ethernet Adaptive Virtual Function support
+<<<<<<< HEAD
   DEPENDS:=@PCI_SUPPORT +!LINUX_6_6:kmod-libie
+=======
+  DEPENDS:=@PCI_SUPPORT +!LINUX_6_6:kmod-libeth +!LINUX_6_6:kmod-libie
+>>>>>>> 2260t/qualcommax_6.12
   KCONFIG:= \
        CONFIG_I40EVF \
        CONFIG_IAVF

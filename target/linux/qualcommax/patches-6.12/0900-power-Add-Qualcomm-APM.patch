@@ -49,7 +49,11 @@ Signed-off-by: Robert Marko <robimarko@gmail.com>
 +obj-$(CONFIG_QCOM_APM)		+= apm.o
 --- /dev/null
 +++ b/drivers/power/qcom/apm.c
+<<<<<<< HEAD
 @@ -0,0 +1,941 @@
+=======
+@@ -0,0 +1,943 @@
+>>>>>>> 2260t/qualcommax_6.12
 +/*
 + * Copyright (c) 2015-2016, The Linux Foundation. All rights reserved.
 + *
@@ -963,6 +967,11 @@ Signed-off-by: Robert Marko <robimarko@gmail.com>
 +		mutex_unlock(&apm_ctrl_list_mutex);
 +		apm_debugfs_deinit(ctrl_dev);
 +	}
+<<<<<<< HEAD
+=======
++
++
+>>>>>>> 2260t/qualcommax_6.12
 +}
 +
 +static struct platform_driver msm_apm_driver = {
@@ -971,7 +980,11 @@ Signed-off-by: Robert Marko <robimarko@gmail.com>
 +		.of_match_table	= msm_apm_match_table,
 +	},
 +	.probe		= msm_apm_probe,
+<<<<<<< HEAD
 +	.remove		= msm_apm_remove,
+=======
++	.remove_new	= msm_apm_remove,
+>>>>>>> 2260t/qualcommax_6.12
 +};
 +
 +static int __init msm_apm_init(void)

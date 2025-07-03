@@ -2760,7 +2760,11 @@ Signed-off-by: Sriram R <srirrama@codeaurora.org>
 +#endif
 --- a/drivers/net/wireless/ath/ath11k/hif.h
 +++ b/drivers/net/wireless/ath/ath11k/hif.h
+<<<<<<< HEAD
 @@ -32,6 +32,7 @@ struct ath11k_hif_ops {
+=======
+@@ -31,6 +31,7 @@ struct ath11k_hif_ops {
+>>>>>>> 2260t/qualcommax_6.12
  	void (*ce_irq_disable)(struct ath11k_base *ab);
  	void (*get_ce_msi_idx)(struct ath11k_base *ab, u32 ce_id, u32 *msi_idx);
  	void (*config_static_window)(struct ath11k_base *ab);
@@ -2768,7 +2772,11 @@ Signed-off-by: Sriram R <srirrama@codeaurora.org>
  };
  
  static inline void ath11k_hif_ce_irq_enable(struct ath11k_base *ab)
+<<<<<<< HEAD
 @@ -138,6 +139,14 @@ static inline void ath11k_get_msi_addres
+=======
+@@ -137,6 +138,14 @@ static inline void ath11k_get_msi_addres
+>>>>>>> 2260t/qualcommax_6.12
  	ab->hif.ops->get_msi_address(ab, msi_addr_lo, msi_addr_hi);
  }
  
@@ -2806,7 +2814,11 @@ Signed-off-by: Sriram R <srirrama@codeaurora.org>
  static inline void ath11k_pci_select_window(struct ath11k_pci *ab_pci, u32 offset)
  {
  	struct ath11k_base *ab = ab_pci->ab;
+<<<<<<< HEAD
 @@ -725,6 +739,7 @@ static const struct ath11k_hif_ops ath11
+=======
+@@ -723,6 +737,7 @@ static const struct ath11k_hif_ops ath11
+>>>>>>> 2260t/qualcommax_6.12
  	.map_service_to_pipe = ath11k_pcic_map_service_to_pipe,
  	.ce_irq_enable = ath11k_pci_hif_ce_irq_enable,
  	.ce_irq_disable = ath11k_pci_hif_ce_irq_disable,
@@ -2816,7 +2828,11 @@ Signed-off-by: Sriram R <srirrama@codeaurora.org>
  
 --- a/drivers/net/wireless/ath/ath11k/dp_rx.c
 +++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+<<<<<<< HEAD
 @@ -994,6 +994,29 @@ unlock_exit:
+=======
+@@ -993,6 +993,29 @@ unlock_exit:
+>>>>>>> 2260t/qualcommax_6.12
  	spin_unlock_bh(&ab->base_lock);
  }
  
@@ -2998,7 +3014,11 @@ Signed-off-by: Sriram R <srirrama@codeaurora.org>
  int ath11k_dp_pdev_reo_setup(struct ath11k_base *ab);
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
+<<<<<<< HEAD
 @@ -6253,6 +6253,16 @@ static int ath11k_mac_op_start(struct ie
+=======
+@@ -6250,6 +6250,16 @@ static int ath11k_mac_op_start(struct ie
+>>>>>>> 2260t/qualcommax_6.12
  		goto err;
  	}
  
@@ -3017,7 +3037,11 @@ Signed-off-by: Sriram R <srirrama@codeaurora.org>
  	/* TODO: Do we need to enable ANI? */
 --- a/drivers/net/wireless/ath/ath11k/core.h
 +++ b/drivers/net/wireless/ath/ath11k/core.h
+<<<<<<< HEAD
 @@ -900,6 +900,8 @@ struct ath11k_soc_dp_tx_err_stats {
+=======
+@@ -896,6 +896,8 @@ struct ath11k_soc_dp_tx_err_stats {
+>>>>>>> 2260t/qualcommax_6.12
  	 * idr unavailable etc.
  	 */
  	atomic_t misc_fail;
@@ -3026,6 +3050,7 @@ Signed-off-by: Sriram R <srirrama@codeaurora.org>
  };
  
  struct ath11k_soc_dp_stats {
+<<<<<<< HEAD
 @@ -941,6 +943,7 @@ struct ath11k_base {
  	struct ath11k_htc htc;
  
@@ -3034,3 +3059,5 @@ Signed-off-by: Sriram R <srirrama@codeaurora.org>
  
  	void __iomem *mem;
  	void __iomem *mem_ce;
+=======
+>>>>>>> 2260t/qualcommax_6.12

@@ -19,7 +19,11 @@ Acked-by: Rob Landley <rob@landley.net>
  config CEVT_BCM1480
  	bool
  
+<<<<<<< HEAD
 @@ -2990,6 +2987,18 @@ choice
+=======
+@@ -2991,6 +2988,18 @@ choice
+>>>>>>> 2260t/qualcommax_6.12
  		bool "Extend builtin kernel arguments with bootloader arguments"
  endchoice
  

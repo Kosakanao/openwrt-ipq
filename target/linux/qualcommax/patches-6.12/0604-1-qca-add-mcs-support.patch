@@ -39,7 +39,11 @@
   * added to the bridge private HW address list and all required ports
 --- a/net/bridge/br_private.h
 +++ b/net/bridge/br_private.h
+<<<<<<< HEAD
 @@ -913,6 +913,7 @@ void br_manage_promisc(struct net_bridge
+=======
+@@ -912,6 +912,7 @@ void br_manage_promisc(struct net_bridge
+>>>>>>> 2260t/qualcommax_6.12
  int nbp_backup_change(struct net_bridge_port *p, struct net_device *backup_dev);
  
  /* br_input.c */
@@ -47,7 +51,11 @@
  int br_handle_frame_finish(struct net *net, struct sock *sk, struct sk_buff *skb);
  rx_handler_func_t *br_get_rx_handler(const struct net_device *dev);
  
+<<<<<<< HEAD
 @@ -2304,4 +2305,14 @@ struct nd_msg *br_is_nd_neigh_msg(struct
+=======
+@@ -2294,4 +2295,14 @@ struct nd_msg *br_is_nd_neigh_msg(struct
+>>>>>>> 2260t/qualcommax_6.12
  bool br_is_neigh_suppress_enabled(const struct net_bridge_port *p, u16 vid);
  #define __br_get(__hook, __default, __args ...) \
  		(__hook ? (__hook(__args)) : (__default)) /* QCA NSS ECM support */
@@ -144,7 +152,11 @@
  	bool promisc;
  	u16 vid = 0;
  	u8 state;
+<<<<<<< HEAD
 @@ -182,6 +198,12 @@ int br_handle_frame_finish(struct net *n
+=======
+@@ -180,6 +196,12 @@ int br_handle_frame_finish(struct net *n
+>>>>>>> 2260t/qualcommax_6.12
  
  	switch (pkt_type) {
  	case BR_PKT_MULTICAST:
@@ -157,7 +169,11 @@
  		mdst = br_mdb_entry_skb_get(brmctx, skb, vid);
  		if ((mdst || BR_INPUT_SKB_CB_MROUTERS_ONLY(skb)) &&
  		    br_multicast_querier_exists(brmctx, eth_hdr(skb), mdst)) {
+<<<<<<< HEAD
 @@ -197,8 +219,15 @@ int br_handle_frame_finish(struct net *n
+=======
+@@ -195,8 +217,15 @@ int br_handle_frame_finish(struct net *n
+>>>>>>> 2260t/qualcommax_6.12
  		}
  		break;
  	case BR_PKT_UNICAST:
@@ -175,7 +191,11 @@
  	default:
  		break;
  	}
+<<<<<<< HEAD
 @@ -213,6 +242,13 @@ int br_handle_frame_finish(struct net *n
+=======
+@@ -211,6 +240,13 @@ int br_handle_frame_finish(struct net *n
+>>>>>>> 2260t/qualcommax_6.12
  			dst->used = now;
  		br_forward(dst->dst, skb, local_rcv, false);
  	} else {
@@ -806,8 +826,13 @@
 +
 +	mrt->vif_table[vif].pkt_in += pkts_in;
 +	mrt->vif_table[vif].bytes_in += bytes_in;
+<<<<<<< HEAD
 +	atomic_long_add(pkts_out, &cache->_c.mfc_un.res.pkt);
 +	atomic_long_add(bytes_out, &cache->_c.mfc_un.res.bytes);
+=======
++	atomic64_add(pkts_out, &cache->_c.mfc_un.res.pkt);
++	atomic64_add(bytes_out, &cache->_c.mfc_un.res.bytes);
+>>>>>>> 2260t/qualcommax_6.12
 +
 +	for (vifi = cache->_c.mfc_un.res.minvif;
 +			vifi < cache->_c.mfc_un.res.maxvif; vifi++) {

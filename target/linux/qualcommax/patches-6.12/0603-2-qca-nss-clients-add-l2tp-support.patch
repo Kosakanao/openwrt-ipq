@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 --- a/include/linux/ppp_channel.h
 +++ b/include/linux/ppp_channel.h
 @@ -61,6 +61,51 @@ struct ppp_channel {
@@ -354,6 +355,8 @@
  /* ppp_release_channels()
   *	Releases channels
   */
+=======
+>>>>>>> 2260t/qualcommax_6.12
 --- a/net/l2tp/l2tp_core.c
 +++ b/net/l2tp/l2tp_core.c
 @@ -622,6 +622,31 @@ out:
@@ -400,6 +403,7 @@
  /* Tunnel and session lifetime management.
   * Creation of a new instance is a two-step process: create, then register.
   * Destruction is triggered using the *_delete functions, and completes asynchronously.
+<<<<<<< HEAD
 --- a/net/l2tp/l2tp_eth.c
 +++ b/net/l2tp/l2tp_eth.c
 @@ -70,6 +70,8 @@ static netdev_tx_t l2tp_eth_dev_xmit(str
@@ -419,3 +423,5 @@
  	dev->lltx		= true;
  	dev->netdev_ops		= &l2tp_eth_netdev_ops;
  	dev->needs_free_netdev	= true;
+=======
+>>>>>>> 2260t/qualcommax_6.12

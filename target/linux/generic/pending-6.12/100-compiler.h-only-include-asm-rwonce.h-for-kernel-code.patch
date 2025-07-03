@@ -11,7 +11,11 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
 
 --- a/include/linux/compiler.h
 +++ b/include/linux/compiler.h
+<<<<<<< HEAD
 @@ -191,6 +191,8 @@ void ftrace_likely_update(struct ftrace_
+=======
+@@ -214,6 +214,8 @@ void ftrace_likely_update(struct ftrace_
+>>>>>>> 2260t/qualcommax_6.12
  	__v;								\
  })
  
@@ -20,7 +24,11 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  #endif /* __KERNEL__ */
  
  /**
+<<<<<<< HEAD
 @@ -306,6 +308,4 @@ static inline void *offset_to_ptr(const
+=======
+@@ -329,6 +331,4 @@ static inline void *offset_to_ptr(const
+>>>>>>> 2260t/qualcommax_6.12
   */
  #define prevent_tail_call_optimization()	mb()
  

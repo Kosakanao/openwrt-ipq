@@ -21,6 +21,7 @@
 #include <linux/version.h>
 
 #include "skbuff_debug.h"
+<<<<<<< HEAD
 #define CPU_NAME_SIZE 7
 
 static struct proc_dir_entry *proc_net_skbrecycler;
@@ -28,16 +29,26 @@ static struct proc_dir_entry *proc_net_skbrecycler_per_cpu;
 
 static DEFINE_PER_CPU(struct sk_buff_head, recycle_list);
 static int skb_recycler_max_skbs_core[NR_CPUS];
+=======
+
+static struct proc_dir_entry *proc_net_skbrecycler;
+
+static DEFINE_PER_CPU(struct sk_buff_head, recycle_list);
+>>>>>>> 2260t/qualcommax_6.12
 static int skb_recycle_max_skbs = SKB_RECYCLE_MAX_SKBS;
 
 #ifdef CONFIG_SKB_RECYCLER_MULTI_CPU
 static DEFINE_PER_CPU(struct sk_buff_head, recycle_spare_list);
+<<<<<<< HEAD
 static int skb_recycler_max_spare_skbs_core[NR_CPUS];
+=======
+>>>>>>> 2260t/qualcommax_6.12
 static struct global_recycler glob_recycler;
 static int skb_recycle_spare_max_skbs = SKB_RECYCLE_SPARE_MAX_SKBS;
 #endif
 
 static int skb_recycling_enable = 1;
+<<<<<<< HEAD
 
 /**
  * skb_recycler_clear_flags - Clear skb flags
@@ -58,6 +69,8 @@ void skb_recycler_clear_flags(struct sk_buff *skb)
 	skb->int_pri = 0;
 }
 
+=======
+>>>>>>> 2260t/qualcommax_6.12
 inline struct sk_buff *skb_recycler_alloc(struct net_device *dev,
 					  unsigned int length, bool reset_skb)
 {
@@ -131,8 +144,11 @@ inline struct sk_buff *skb_recycler_alloc(struct net_device *dev,
 
 	if (likely(skb)) {
 		struct skb_shared_info *shinfo;
+<<<<<<< HEAD
 		bool is_fast_recycled = skb->fast_recycled;
 		bool recycled_for_ds = skb->recycled_for_ds;
+=======
+>>>>>>> 2260t/qualcommax_6.12
 
 		/* We're about to write a large amount to the skb to
 		 * zero most of the structure so prefetch the start
@@ -144,6 +160,7 @@ inline struct sk_buff *skb_recycler_alloc(struct net_device *dev,
 		 * (by DS rings), and the buffer is found to be recycled by
 		 * DS previously
 		 */
+<<<<<<< HEAD
 		if (reset_skb || !recycled_for_ds) {
 			if (!is_fast_recycled) {
 				shinfo = skb_shinfo(skb);
@@ -169,6 +186,22 @@ inline struct sk_buff *skb_recycler_alloc(struct net_device *dev,
 			skb->recycled_for_ds = 1;
 		}
 	} else {
+=======
+
+		shinfo = skb_shinfo(skb);
+		prefetchw(shinfo);
+		zero_struct(skb, offsetof(struct sk_buff, tail));
+		refcount_set(&skb->users, 1);
+		skb->mac_header = (typeof(skb->mac_header))~0U;
+		skb->transport_header = (typeof(skb->transport_header))~0U;
+		zero_struct(shinfo, offsetof(struct skb_shared_info, dataref));
+		atomic_set(&shinfo->dataref, 1);
+
+		skb->data = skb->head + NET_SKB_PAD;
+		skb_reset_tail_pointer(skb);
+
+		skb->dev = dev;
+>>>>>>> 2260t/qualcommax_6.12
 	}
 
 	return skb;
@@ -179,10 +212,13 @@ inline bool skb_recycler_consume(struct sk_buff *skb)
 	unsigned long flags;
 	struct sk_buff_head *h;
 	struct sk_buff *ln = NULL;
+<<<<<<< HEAD
 	int max_skbs;
 #ifdef CONFIG_SKB_RECYCLER_MULTI_CPU
 	int max_spare_skbs;
 #endif
+=======
+>>>>>>> 2260t/qualcommax_6.12
 
 	/* Consume the skbs if the skb_recycling_enable */
 	if (unlikely(!skb_recycling_enable)) {
@@ -197,11 +233,18 @@ inline bool skb_recycler_consume(struct sk_buff *skb)
 	/* If we can, then it will be much faster for us to recycle this one
 	 * later than to allocate a new one from scratch.
 	 */
+<<<<<<< HEAD
 	max_skbs = skb_recycler_max_skbs_core[get_cpu_index()];
 	h = &get_cpu_var(recycle_list);
 	local_irq_save(flags);
 	/* Attempt to enqueue the CPU hot recycle list first */
 	if (likely(skb_queue_len(h) < max_skbs)) {
+=======
+	h = &get_cpu_var(recycle_list);
+	local_irq_save(flags);
+	/* Attempt to enqueue the CPU hot recycle list first */
+	if (likely(skb_queue_len(h) < skb_recycle_max_skbs)) {
+>>>>>>> 2260t/qualcommax_6.12
 		ln = skb_peek(h);
 		/* Recalculate the sum for peek of list as next and prev
 		 * pointers of skb->next will be updated in __skb_queue_head
@@ -215,14 +258,21 @@ inline bool skb_recycler_consume(struct sk_buff *skb)
 		return true;
 	}
 #ifdef CONFIG_SKB_RECYCLER_MULTI_CPU
+<<<<<<< HEAD
 	max_spare_skbs = skb_recycler_max_spare_skbs_core[get_cpu_index()];
+=======
+>>>>>>> 2260t/qualcommax_6.12
 	h = this_cpu_ptr(&recycle_spare_list);
 
 	/* The CPU hot recycle list was full; if the spare list is also full,
 	 * attempt to move the spare list to the global list for other CPUs to
 	 * use.
 	 */
+<<<<<<< HEAD
 	if (unlikely(skb_queue_len(h) >= max_spare_skbs)) {
+=======
+	if (unlikely(skb_queue_len(h) >= skb_recycle_spare_max_skbs)) {
+>>>>>>> 2260t/qualcommax_6.12
 		u8 cur_tail, next_tail;
 
 		spin_lock(&glob_recycler.lock);
@@ -303,7 +353,11 @@ inline bool skb_recycler_consume_list_fast(struct sk_buff_head *skb_list)
 	skb_queue_walk_safe(skb_list, skb, next) {
 		if (skb) {
 			__skb_unlink(skb, skb_list);
+<<<<<<< HEAD
 			consume_skb(skb);
+=======
+			skb_recycler_consume(skb);
+>>>>>>> 2260t/qualcommax_6.12
 		}
 	}
 
@@ -314,11 +368,14 @@ inline bool skb_recycler_consume_list_fast(struct sk_buff_head *skb_list)
 {
 	unsigned long flags;
 	struct sk_buff_head *h;
+<<<<<<< HEAD
 	int max_skbs;
 #ifdef CONFIG_SKB_RECYCLER_MULTI_CPU
 	int max_spare_skbs;
 #endif
 	max_skbs = skb_recycler_max_skbs_core[get_cpu_index()];
+=======
+>>>>>>> 2260t/qualcommax_6.12
 
 	/* Allocate the recycled skbs if the skb_recycling_enable */
 	if (unlikely(!skb_recycling_enable)) {
@@ -328,13 +385,18 @@ inline bool skb_recycler_consume_list_fast(struct sk_buff_head *skb_list)
 	h = &get_cpu_var(recycle_list);
 	local_irq_save(flags);
 	/* Attempt to enqueue the CPU hot recycle list first */
+<<<<<<< HEAD
 	if (likely(skb_queue_len(h) < max_skbs)) {
+=======
+	if (likely(skb_queue_len(h) < skb_recycle_max_skbs)) {
+>>>>>>> 2260t/qualcommax_6.12
 		skb_queue_splice(skb_list,h);
 		local_irq_restore(flags);
 		preempt_enable();
 		return true;
 	}
 
+<<<<<<< HEAD
 #ifdef CONFIG_SKB_RECYCLER_MULTI_CPU
 	max_spare_skbs = skb_recycler_max_spare_skbs_core[get_cpu_index()];
 	h = this_cpu_ptr(&recycle_spare_list);
@@ -380,6 +442,8 @@ inline bool skb_recycler_consume_list_fast(struct sk_buff_head *skb_list)
 	}
 #endif
 
+=======
+>>>>>>> 2260t/qualcommax_6.12
 	local_irq_restore(flags);
 	preempt_enable();
 
@@ -397,7 +461,17 @@ static void skb_recycler_free_skb(struct sk_buff_head *list)
 		skbuff_debugobj_activate(skb);
 		next = skb->next;
 		__skb_unlink(skb, list);
+<<<<<<< HEAD
 		skb_release_data(skb, SKB_CONSUMED, false);
+=======
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(6,6,78)
+		skb_release_data(skb, SKB_CONSUMED);
+#elif LINUX_VERSION_CODE >= KERNEL_VERSION(6,2,0)
+		skb_release_data(skb, SKB_CONSUMED, false);
+#else
+		skb_release_data(skb);
+#endif
+>>>>>>> 2260t/qualcommax_6.12
 		kfree_skbmem(skb);
 		/*
 		 * Update the skb->sum for next due to skb_link operation
@@ -443,6 +517,7 @@ static int __init skb_prealloc_init_list(void)
 }
 #endif
 
+<<<<<<< HEAD
 /* skb_max_skbs_per_cpu_write_all
  * overwrite the max skbs for each CPUs.
  */
@@ -469,6 +544,8 @@ static void skb_max_spare_skbs_per_cpu_write_all(unsigned int max_spare_skbs)
 }
 #endif
 
+=======
+>>>>>>> 2260t/qualcommax_6.12
 /* procfs: count
  * Show skb counts
  */
@@ -616,10 +693,15 @@ static ssize_t proc_skb_max_skbs_write(struct file *file,
 	if (copy_from_user(buffer, buf, count) != 0)
 		return -EFAULT;
 	ret = kstrtoint(strstrip(buffer), 10, &max);
+<<<<<<< HEAD
 	if (ret == 0 && max >= 0) {
 		skb_recycle_max_skbs = max;
 		skb_max_skbs_per_cpu_write_all(max);
 	}
+=======
+	if (ret == 0 && max >= 0)
+		skb_recycle_max_skbs = max;
+>>>>>>> 2260t/qualcommax_6.12
 
 	return count;
 }
@@ -664,10 +746,15 @@ proc_skb_max_spare_skbs_write(struct file *file,
 	if (copy_from_user(buffer, buf, count) != 0)
 		return -EFAULT;
 	ret = kstrtoint(strstrip(buffer), 10, &max);
+<<<<<<< HEAD
 	if (ret == 0 && max >= 0) {
 		skb_recycle_spare_max_skbs = max;
 		skb_max_spare_skbs_per_cpu_write_all(max);
 	}
+=======
+	if (ret == 0 && max >= 0)
+		skb_recycle_spare_max_skbs = max;
+>>>>>>> 2260t/qualcommax_6.12
 
 	return count;
 }
@@ -714,6 +801,7 @@ static ssize_t proc_skb_recycle_enable_write(struct file *file,
 }
 
 static const struct proc_ops proc_skb_recycle_enable_fops = {
+<<<<<<< HEAD
         .proc_open    = proc_skb_recycle_enable_open,
         .proc_read    = seq_read,
         .proc_write   = proc_skb_recycle_enable_write,
@@ -854,15 +942,23 @@ static const struct proc_ops proc_skb_max_skbs_per_cpu_fops = {
 	.proc_open    = proc_skb_max_skbs_per_cpu_open,
 	.proc_read    = seq_read,
 	.proc_write   = proc_skb_max_skbs_per_cpu_write,
+=======
+	.proc_open = proc_skb_recycle_enable_open,
+	.proc_read = seq_read,
+	.proc_write = proc_skb_recycle_enable_write,
+>>>>>>> 2260t/qualcommax_6.12
 	.proc_release = single_release,
 };
 
 static void skb_recycler_init_procfs(void)
 {
+<<<<<<< HEAD
 	int cpu;
 	union void_int icpu;
 	char cpu_name[CPU_NAME_SIZE];
 
+=======
+>>>>>>> 2260t/qualcommax_6.12
 	proc_net_skbrecycler = proc_mkdir("skb_recycler", init_net.proc_net);
 	if (!proc_net_skbrecycler) {
 		pr_err("cannot create skb_recycle proc dir");
@@ -901,6 +997,7 @@ static void skb_recycler_init_procfs(void)
 			 &proc_skb_recycle_enable_fops))
 		pr_err("cannot create proc net skb_recycle enable\n");
 
+<<<<<<< HEAD
 	for_each_online_cpu(cpu) {
 		icpu.num = cpu;
 		snprintf(cpu_name, CPU_NAME_SIZE, "cpu%d", cpu);
@@ -922,6 +1019,8 @@ static void skb_recycler_init_procfs(void)
 					&proc_skb_count_per_cpu_fops, icpu.ptr))
 			pr_err("cannot create proc net skb_recycle held\n");
 	}
+=======
+>>>>>>> 2260t/qualcommax_6.12
 }
 
 void __init skb_recycler_init(void)
@@ -933,13 +1032,19 @@ void __init skb_recycler_init(void)
 
 	for_each_possible_cpu(cpu) {
 		skb_queue_head_init(&per_cpu(recycle_list, cpu));
+<<<<<<< HEAD
 		skb_recycler_max_skbs_core[cpu] = 1024;
+=======
+>>>>>>> 2260t/qualcommax_6.12
 	}
 
 #ifdef CONFIG_SKB_RECYCLER_MULTI_CPU
 	for_each_possible_cpu(cpu) {
 		skb_queue_head_init(&per_cpu(recycle_spare_list, cpu));
+<<<<<<< HEAD
 		skb_recycler_max_spare_skbs_core[cpu] = 256;
+=======
+>>>>>>> 2260t/qualcommax_6.12
 	}
 
 	spin_lock_init(&glob_recycler.lock);
@@ -961,11 +1066,20 @@ void __init skb_recycler_init(void)
 
 void skb_recycler_print_all_lists(void)
 {
+<<<<<<< HEAD
 	unsigned long flags;
 	int cpu;
 #ifdef CONFIG_SKB_RECYCLER_MULTI_CPU
 	int i;
 	struct sk_buff_head *h;
+=======
+
+	unsigned long flags;
+	struct sk_buff_head *h;
+#ifdef CONFIG_SKB_RECYCLER_MULTI_CPU
+	int i;
+	int cpu;
+>>>>>>> 2260t/qualcommax_6.12
 
 	cpu = get_cpu();
 	spin_lock_irqsave(&glob_recycler.lock, flags);
@@ -986,11 +1100,20 @@ void skb_recycler_print_all_lists(void)
 
 	preempt_disable();
 	local_irq_save(flags);
+<<<<<<< HEAD
 	h = &per_cpu(recycle_list, cpu);
 	skbuff_debugobj_print_skb_list(h->next, "Recycle List", cpu);
 
 	local_irq_restore(flags);
 	preempt_enable();
+=======
+	h = &get_cpu_var(recycle_list);
+	//skbuff_debugobj_print_skb_list(h->next, "Recycle List", cpu);
+
+	local_irq_restore(flags);
+	preempt_enable();
+
+>>>>>>> 2260t/qualcommax_6.12
 }
 
 #ifdef CONFIG_SKB_FAST_RECYCLABLE_DEBUG_ENABLE
@@ -1010,7 +1133,11 @@ static inline bool consume_skb_can_fast_recycle_debug(const struct sk_buff *skb,
 		WARN(1, "skb_debug: irqs_disabled for skb = 0x%p \n", skb);
 		return false;
 	}
+<<<<<<< HEAD
 	if (unlikely(skb_zcopy(skb))) {
+=======
+	if (unlikely(skb_shinfo(skb)->tx_flags & SKBTX_DEV_ZEROCOPY)) {
+>>>>>>> 2260t/qualcommax_6.12
 		WARN(1, "skb_debug: ZEROCOPY flag set for skb = 0x%p \n", skb);
 		return false;
 	}

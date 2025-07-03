@@ -17,6 +17,12 @@ fi
 # Retrieve OpenWRT version
 [ -r /etc/openwrt_version ] && openwrt_rev=$(cat /etc/openwrt_version)
 
+<<<<<<< HEAD
+=======
+# Retrieve Linux kernel
+kernel=$(uname -r)
+
+>>>>>>> 2260t/qualcommax_6.12
 # Retrieve device model
 model=$(jsonfilter -e ''@.model.name'' < /etc/board.json | sed -e "s/,/_/g")
 
@@ -25,6 +31,12 @@ nss_fw="/lib/firmware/qca*.bin"
 # shellcheck disable=2086
 [ "$(ls $nss_fw 2> /dev/null)" ] && nss_version=$(grep -h -m 1 -a -o 'Version:.[^[:cntrl:]]*' $nss_fw | head -1 | cut -d ' ' -f 2)
 
+<<<<<<< HEAD
+=======
+# CPU governors
+cpu=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor)
+
+>>>>>>> 2260t/qualcommax_6.12
 # ATH11K firmware version
 ath11k_fw=$(grep -hm1 -a -o 'WLAN.[^[:cntrl:]]*SILICONZ-1' /lib/firmware/*/q6* | head -1)
 
@@ -39,6 +51,10 @@ ipq_date=${IPQ_DATE:-"N/A"}
 
 # Defaults for empty variables
 openwrt_rev=${openwrt_rev:-"N/A"}
+<<<<<<< HEAD
+=======
+kernel=${kernel:-"N/A"}
+>>>>>>> 2260t/qualcommax_6.12
 model=${model:-"N/A"}
 nss_version=${nss_version:-"N/A"}
 ath11k_fw=${ath11k_fw:-"N/A"}
@@ -47,10 +63,18 @@ mac80211_version=${mac80211_version:-"N/A"}
 # Display the information
 echo -e "${bold}${red}     MODEL${reset}: ${blue}${bold}${model}${reset}"
 echo -e "${bold}${red}   OPENWRT${reset}: ${white}${openwrt_rev}${reset}"
+<<<<<<< HEAD
+=======
+echo -e "${bold}${red}    KERNEL${reset}: ${yellow}${kernel}${reset}"
+>>>>>>> 2260t/qualcommax_6.12
 echo -e "${bold}${red}IPQ BRANCH${reset}: ${cyan}${ipq_branch}${reset}"
 echo -e "${bold}${red}IPQ COMMIT${reset}: ${cyan}${ipq_commit}${reset}"
 echo -e "${bold}${red}  IPQ DATE${reset}: ${cyan}${ipq_date}${reset}"
 echo -e "${bold}${red}    NSS FW${reset}: ${magenta}${nss_version}${reset}"
+<<<<<<< HEAD
+=======
+echo -e "${bold}${red}  CPU MODE${reset}: ${magenta}${cpu}${reset}"
+>>>>>>> 2260t/qualcommax_6.12
 echo -e "${bold}${red}  MAC80211${reset}: ${yellow}${mac80211_version}${reset}"
 echo -e "${bold}${red} ATH11K FW${reset}: ${green}${ath11k_fw}${reset}"
 
@@ -86,6 +110,7 @@ if [ -z "$cmd" ]; then
   exit 1
 fi
 
+<<<<<<< HEAD
 $cmd $flags | awk -v count=0 '
   /kmod-qca|^nss/ {
   if(count>0) tab="            "
@@ -93,3 +118,18 @@ $cmd $flags | awk -v count=0 '
   count++
 }'
 echo -ne "${reset}"
+=======
+$cmd $flags | awk -v count=0 -v cmd=$cmd '
+  /kmod-qca|^nss/ {
+  if(count>0) tab="            "
+  print tab (cmd == "/bin/opkg" ? $0 : $1)
+  count++
+  }
+  END {
+    if (count == 0) {
+      print "N/a"
+    }
+  }'
+
+echo -ne "${reset}"
+>>>>>>> 2260t/qualcommax_6.12

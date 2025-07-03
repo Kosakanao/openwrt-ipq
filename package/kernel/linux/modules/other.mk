@@ -529,7 +529,8 @@ define KernelPackage/ramoops
   TITLE:=Ramoops (pstore-ram)
   DEFAULT:=m if ALL_KMODS
   KCONFIG:=CONFIG_PSTORE_RAM \
-	CONFIG_PSTORE_CONSOLE=y
+	CONFIG_PSTORE_CONSOLE=y \
+	CONFIG_PSTORE_PMSG=y
   DEPENDS:=+kmod-pstore +kmod-reed-solomon
   FILES:= $(LINUX_DIR)/fs/pstore/ramoops.ko
   AUTOLOAD:=$(call AutoLoad,30,ramoops,1)
@@ -694,6 +695,7 @@ define KernelPackage/zram
 	+(KERNEL_ZRAM_BACKEND_LZ4HC||KERNEL_ZRAM_DEF_COMP_LZ4HC):kmod-lib-lz4hc \
 	+(KERNEL_ZRAM_BACKEND_ZSTD||KERNEL_ZRAM_DEF_COMP_ZSTD):kmod-lib-zstd
   TITLE:=ZRAM
+  DEPENDS:=+LINUX_6_12:kmod-lib-lzo
   KCONFIG:= \
 	CONFIG_ZSMALLOC \
 	CONFIG_ZRAM \
@@ -714,7 +716,14 @@ define KernelPackage/zram/config
   if PACKAGE_kmod-zram
     if !LINUX_6_6
         config KERNEL_ZRAM_BACKEND_LZO
+<<<<<<< HEAD
                 bool "lzo and lzo-rle compression support"
+=======
+                bool "lzo and lzo-rle compression support" if KERNEL_ZRAM_BACKEND_LZ4 || \
+                    KERNEL_ZRAM_BACKEND_LZ4HC || KERNEL_ZRAM_BACKEND_ZSTD
+                default !KERNEL_ZRAM_BACKEND_LZ4 && \
+                    !KERNEL_ZRAM_BACKEND_LZ4HC && !KERNEL_ZRAM_BACKEND_ZSTD
+>>>>>>> 2260t/qualcommax_6.12
 
         config KERNEL_ZRAM_BACKEND_LZ4
                 bool "lz4 compression support"
@@ -725,12 +734,15 @@ define KernelPackage/zram/config
         config KERNEL_ZRAM_BACKEND_ZSTD
                 bool "zstd compression support"
 
+<<<<<<< HEAD
         config KERNEL_ZRAM_BACKEND_FORCE_LZO
                 def_bool !KERNEL_ZRAM_BACKEND_LZ4 && \
                          !KERNEL_ZRAM_BACKEND_LZ4HC && \
                          !KERNEL_ZRAM_BACKEND_ZSTD
                 select KERNEL_ZRAM_BACKEND_LZO
 
+=======
+>>>>>>> 2260t/qualcommax_6.12
     endif
     choice
       prompt "ZRAM Default compressor"
@@ -953,7 +965,15 @@ $(eval $(call KernelPackage,keys-trusted))
 define KernelPackage/tpm
   SUBMENU:=$(OTHER_MENU)
   TITLE:=TPM Hardware Support
+<<<<<<< HEAD
   DEPENDS:= +kmod-random-core
+=======
+  DEPENDS:= +kmod-random-core +kmod-asn1-decoder \
+	  +kmod-asn1-encoder +kmod-oid-registry \
+	  +!LINUX_6_6:kmod-crypto-ecdh \
+	  +!LINUX_6_6:kmod-crypto-kpp \
+	  +!LINUX_6_6:kmod-crypto-lib-aescfb
+>>>>>>> 2260t/qualcommax_6.12
   KCONFIG:= CONFIG_TCG_TPM
   FILES:= $(LINUX_DIR)/drivers/char/tpm/tpm.ko
   AUTOLOAD:=$(call AutoLoad,10,tpm,1)

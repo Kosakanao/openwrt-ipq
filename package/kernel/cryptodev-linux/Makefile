@@ -42,11 +42,19 @@ define KernelPackage/cryptodev/description
 endef
 
 ifneq ($(CONFIG_PACKAGE_kmod-crypto-qce),)
+<<<<<<< HEAD
 EXTRA_CFLAGS+=-DQCA
 endif
 
 ifneq ($(CONFIG_PACKAGE_kmod-qca-nss-crypto),)
 EXTRA_CFLAGS+=-DQCANSS
+=======
+  EXTRA_CFLAGS+=-DQCA
+endif
+
+ifneq ($(CONFIG_PACKAGE_kmod-qca-nss-crypto),)
+  EXTRA_CFLAGS+=-DQCANSS
+>>>>>>> 2260t/qualcommax_6.12
 endif
 
 define Build/Configure

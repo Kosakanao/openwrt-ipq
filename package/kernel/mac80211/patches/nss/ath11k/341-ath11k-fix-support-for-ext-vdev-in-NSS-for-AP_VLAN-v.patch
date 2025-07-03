@@ -38,7 +38,11 @@ Signed-off-by: Aditya Kumar Singh <quic_adisi@quicinc.com>
 
 --- a/drivers/net/wireless/ath/ath11k/core.c
 +++ b/drivers/net/wireless/ath/ath11k/core.c
+<<<<<<< HEAD
 @@ -2008,6 +2008,11 @@ static int ath11k_core_reconfigure_on_cr
+=======
+@@ -1944,6 +1944,11 @@ static int ath11k_core_reconfigure_on_cr
+>>>>>>> 2260t/qualcommax_6.12
  
  	clear_bit(ATH11K_FLAG_CRASH_FLUSH, &ab->dev_flags);
  

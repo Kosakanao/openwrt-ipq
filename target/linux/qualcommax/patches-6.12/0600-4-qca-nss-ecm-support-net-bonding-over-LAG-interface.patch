@@ -205,6 +205,7 @@
  {
 --- a/drivers/net/bonding/bond_main.c
 +++ b/drivers/net/bonding/bond_main.c
+<<<<<<< HEAD
 @@ -268,6 +268,13 @@ static bool bond_time_in_interval(struct
  				  int mod);
  static void bond_netdev_notify_work(struct work_struct *work);
@@ -220,6 +221,9 @@
  
  const char *bond_mode_name(int mode)
 @@ -288,6 +295,21 @@ const char *bond_mode_name(int mode)
+=======
+@@ -288,6 +288,21 @@ const char *bond_mode_name(int mode)
+>>>>>>> 2260t/qualcommax_6.12
  	return names[mode];
  }
  
@@ -241,7 +245,11 @@
  /**
   * bond_dev_queue_xmit - Prepare skb for xmit.
   *
+<<<<<<< HEAD
 @@ -1306,6 +1328,23 @@ void bond_change_active_slave(struct bon
+=======
+@@ -1306,6 +1321,23 @@ void bond_change_active_slave(struct bon
+>>>>>>> 2260t/qualcommax_6.12
  			if (BOND_MODE(bond) == BOND_MODE_8023AD)
  				bond_3ad_handle_link_change(new_active, BOND_LINK_UP);
  
@@ -265,7 +273,11 @@
  			if (bond_is_lb(bond))
  				bond_alb_handle_link_change(bond, new_active, BOND_LINK_UP);
  		} else {
+<<<<<<< HEAD
 @@ -1950,6 +1989,7 @@ int bond_enslave(struct net_device *bond
+=======
+@@ -1950,6 +1982,7 @@ int bond_enslave(struct net_device *bond
+>>>>>>> 2260t/qualcommax_6.12
  	const struct net_device_ops *slave_ops = slave_dev->netdev_ops;
  	struct slave *new_slave = NULL, *prev_slave;
  	struct sockaddr_storage ss;
@@ -273,7 +285,11 @@
  	int link_reporting;
  	int res = 0, i;
  
+<<<<<<< HEAD
 @@ -2410,6 +2450,15 @@ skip_mac_set:
+=======
+@@ -2399,6 +2432,15 @@ int bond_enslave(struct net_device *bond
+>>>>>>> 2260t/qualcommax_6.12
  		   bond_is_active_slave(new_slave) ? "an active" : "a backup",
  		   new_slave->link != BOND_LINK_DOWN ? "an up" : "a down");
  
@@ -289,7 +305,11 @@
  	/* enslave is successful */
  	bond_queue_slave_event(new_slave);
  	return 0;
+<<<<<<< HEAD
 @@ -2475,6 +2524,15 @@ err_undo_flags:
+=======
+@@ -2464,6 +2506,15 @@ err_undo_flags:
+>>>>>>> 2260t/qualcommax_6.12
  		}
  	}
  
@@ -305,7 +325,11 @@
  	return res;
  }
  
+<<<<<<< HEAD
 @@ -2496,6 +2554,7 @@ static int __bond_release_one(struct net
+=======
+@@ -2485,6 +2536,7 @@ static int __bond_release_one(struct net
+>>>>>>> 2260t/qualcommax_6.12
  	struct bonding *bond = netdev_priv(bond_dev);
  	struct slave *slave, *oldcurrent;
  	struct sockaddr_storage ss;
@@ -313,7 +337,11 @@
  	int old_flags = bond_dev->flags;
  	netdev_features_t old_features = bond_dev->features;
  
+<<<<<<< HEAD
 @@ -2518,6 +2577,15 @@ static int __bond_release_one(struct net
+=======
+@@ -2507,6 +2559,15 @@ static int __bond_release_one(struct net
+>>>>>>> 2260t/qualcommax_6.12
  
  	bond_set_slave_inactive_flags(slave, BOND_SLAVE_NOTIFY_NOW);
  
@@ -329,7 +357,11 @@
  	bond_sysfs_slave_del(slave);
  
  	/* recompute stats just before removing the slave */
+<<<<<<< HEAD
 @@ -2848,6 +2916,8 @@ static void bond_miimon_commit(struct bo
+=======
+@@ -2837,6 +2898,8 @@ static void bond_miimon_commit(struct bo
+>>>>>>> 2260t/qualcommax_6.12
  	struct slave *slave, *primary, *active;
  	bool do_failover = false;
  	struct list_head *iter;
@@ -338,7 +370,11 @@
  
  	ASSERT_RTNL();
  
+<<<<<<< HEAD
 @@ -2887,6 +2957,12 @@ static void bond_miimon_commit(struct bo
+=======
+@@ -2876,6 +2939,12 @@ static void bond_miimon_commit(struct bo
+>>>>>>> 2260t/qualcommax_6.12
  				bond_set_active_slave(slave);
  			}
  
@@ -351,7 +387,11 @@
  			slave_info(bond->dev, slave->dev, "link status definitely up, %u Mbps %s duplex\n",
  				   slave->speed == SPEED_UNKNOWN ? 0 : slave->speed,
  				   slave->duplex ? "full" : "half");
+<<<<<<< HEAD
 @@ -2935,6 +3011,16 @@ static void bond_miimon_commit(struct bo
+=======
+@@ -2924,6 +2993,16 @@ static void bond_miimon_commit(struct bo
+>>>>>>> 2260t/qualcommax_6.12
  		unblock_netpoll_tx();
  	}
  
@@ -368,14 +408,23 @@
  	bond_set_carrier(bond);
  }
  
+<<<<<<< HEAD
 @@ -4187,9 +4273,220 @@ static inline u32 bond_eth_hash(struct s
+=======
+@@ -4176,8 +4255,224 @@ static inline u32 bond_eth_hash(struct s
+>>>>>>> 2260t/qualcommax_6.12
  		return 0;
  
  	ep = (struct ethhdr *)(data + mhoff);
 -	return ep->h_dest[5] ^ ep->h_source[5] ^ be16_to_cpu(ep->h_proto);
 +	return ep->h_dest[5] ^ ep->h_source[5]; /* QCA NSS ECM bonding support */
+<<<<<<< HEAD
  }
  
+=======
++}
++
+>>>>>>> 2260t/qualcommax_6.12
 +/* QCA NSS ECM bonding support - Start */
 +/* Extract the appropriate headers based on bond's xmit policy */
 +static bool bond_flow_dissect_without_skb(struct bonding *bond,
@@ -535,6 +584,14 @@
 +				   u8 *dst_mac, void *src,
 +				   void *dst, u16 protocol,
 +				   struct net_device *bond_dev,
+<<<<<<< HEAD
+=======
++				   __be16 *layer4hdr);
++struct net_device *bond_get_tx_dev(struct sk_buff *skb, uint8_t *src_mac,
++				   u8 *dst_mac, void *src,
++				   void *dst, u16 protocol,
++				   struct net_device *bond_dev,
+>>>>>>> 2260t/qualcommax_6.12
 +				   __be16 *layer4hdr)
 +{
 +	struct bonding *bond;
@@ -560,7 +617,11 @@
 +	default:
 +		return NULL;
 +	}
+<<<<<<< HEAD
 +}
+=======
+ }
+>>>>>>> 2260t/qualcommax_6.12
 +EXPORT_SYMBOL(bond_get_tx_dev);
 +
 +/* In bond_xmit_xor() , we determine the output device by using a pre-
@@ -586,11 +647,18 @@
 +	return NETDEV_TX_OK;
 +}
 +/* QCA NSS ECM bonding support - End */
+<<<<<<< HEAD
 +
  static bool bond_flow_ip(struct sk_buff *skb, struct flow_keys *fk, const void *data,
  			 int hlen, __be16 l2_proto, int *nhoff, int *ip_proto, bool l34)
  {
 @@ -5317,15 +5614,18 @@ static netdev_tx_t bond_3ad_xor_xmit(str
+=======
+ 
+ static bool bond_flow_ip(struct sk_buff *skb, struct flow_keys *fk, const void *data,
+ 			 int hlen, __be16 l2_proto, int *nhoff, int *ip_proto, bool l34)
+@@ -5306,15 +5601,18 @@ static netdev_tx_t bond_3ad_xor_xmit(str
+>>>>>>> 2260t/qualcommax_6.12
  				     struct net_device *dev)
  {
  	struct bonding *bond = netdev_priv(dev);
@@ -616,7 +684,11 @@
  }
  
  /* in broadcast mode, we send everything to all usable interfaces. */
+<<<<<<< HEAD
 @@ -5575,8 +5875,9 @@ static netdev_tx_t __bond_start_xmit(str
+=======
+@@ -5564,8 +5862,9 @@ static netdev_tx_t __bond_start_xmit(str
+>>>>>>> 2260t/qualcommax_6.12
  		return bond_xmit_roundrobin(skb, dev);
  	case BOND_MODE_ACTIVEBACKUP:
  		return bond_xmit_activebackup(skb, dev);

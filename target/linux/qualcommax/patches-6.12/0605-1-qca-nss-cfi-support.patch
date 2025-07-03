@@ -33,7 +33,11 @@
  #include <linux/err.h>
  #include <linux/module.h>
  #include <net/ip.h>
+<<<<<<< HEAD
 @@ -618,6 +619,7 @@ static int esp_output(struct xfrm_state
+=======
+@@ -657,6 +658,7 @@ static int esp_output(struct xfrm_state
+>>>>>>> 2260t/qualcommax_6.12
  	struct ip_esp_hdr *esph;
  	struct crypto_aead *aead;
  	struct esp_info esp;
@@ -41,7 +45,11 @@
  
  	esp.inplace = true;
  
+<<<<<<< HEAD
 @@ -629,6 +631,11 @@ static int esp_output(struct xfrm_state
+=======
+@@ -668,6 +670,11 @@ static int esp_output(struct xfrm_state
+>>>>>>> 2260t/qualcommax_6.12
  	aead = x->data;
  	alen = crypto_aead_authsize(aead);
  
@@ -53,7 +61,11 @@
  	esp.tfclen = 0;
  	if (x->tfcpad) {
  		struct xfrm_dst *dst = (struct xfrm_dst *)skb_dst(skb);
+<<<<<<< HEAD
 @@ -849,6 +856,7 @@ static int esp_input(struct xfrm_state *
+=======
+@@ -888,6 +895,7 @@ static int esp_input(struct xfrm_state *
+>>>>>>> 2260t/qualcommax_6.12
  	u8 *iv;
  	struct scatterlist *sg;
  	int err = -EINVAL;
@@ -61,7 +73,11 @@
  
  	if (!pskb_may_pull(skb, sizeof(struct ip_esp_hdr) + ivlen))
  		goto out;
+<<<<<<< HEAD
 @@ -856,6 +864,12 @@ static int esp_input(struct xfrm_state *
+=======
+@@ -895,6 +903,12 @@ static int esp_input(struct xfrm_state *
+>>>>>>> 2260t/qualcommax_6.12
  	if (elen <= 0)
  		goto out;
  
@@ -84,7 +100,11 @@
  #include <linux/err.h>
  #include <linux/module.h>
  #include <net/ip.h>
+<<<<<<< HEAD
 @@ -650,6 +651,7 @@ static int esp6_output(struct xfrm_state
+=======
+@@ -689,6 +690,7 @@ static int esp6_output(struct xfrm_state
+>>>>>>> 2260t/qualcommax_6.12
  	struct ip_esp_hdr *esph;
  	struct crypto_aead *aead;
  	struct esp_info esp;
@@ -92,7 +112,11 @@
  
  	esp.inplace = true;
  
+<<<<<<< HEAD
 @@ -661,6 +663,11 @@ static int esp6_output(struct xfrm_state
+=======
+@@ -700,6 +702,11 @@ static int esp6_output(struct xfrm_state
+>>>>>>> 2260t/qualcommax_6.12
  	aead = x->data;
  	alen = crypto_aead_authsize(aead);
  
@@ -104,7 +128,11 @@
  	esp.tfclen = 0;
  	if (x->tfcpad) {
  		struct xfrm_dst *dst = (struct xfrm_dst *)skb_dst(skb);
+<<<<<<< HEAD
 @@ -887,6 +894,7 @@ static int esp6_input(struct xfrm_state
+=======
+@@ -926,6 +933,7 @@ static int esp6_input(struct xfrm_state
+>>>>>>> 2260t/qualcommax_6.12
  	__be32 *seqhi;
  	u8 *iv;
  	struct scatterlist *sg;
@@ -112,7 +140,11 @@
  
  	if (!pskb_may_pull(skb, sizeof(struct ip_esp_hdr) + ivlen)) {
  		ret = -EINVAL;
+<<<<<<< HEAD
 @@ -898,6 +906,12 @@ static int esp6_input(struct xfrm_state
+=======
+@@ -937,6 +945,12 @@ static int esp6_input(struct xfrm_state
+>>>>>>> 2260t/qualcommax_6.12
  		goto out;
  	}
  

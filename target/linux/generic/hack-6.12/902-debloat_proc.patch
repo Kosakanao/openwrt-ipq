@@ -235,7 +235,11 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	if (!pe)
 --- a/mm/vmalloc.c
 +++ b/mm/vmalloc.c
+<<<<<<< HEAD
 @@ -5054,6 +5054,8 @@ static int __init proc_vmalloc_init(void
+=======
+@@ -5034,6 +5034,8 @@ static int __init proc_vmalloc_init(void
+>>>>>>> 2260t/qualcommax_6.12
  {
  	void *priv_data = NULL;
  
@@ -330,7 +334,11 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  
 --- a/net/core/sock.c
 +++ b/net/core/sock.c
+<<<<<<< HEAD
 @@ -4256,6 +4256,8 @@ static __net_initdata struct pernet_oper
+=======
+@@ -4251,6 +4251,8 @@ static __net_initdata struct pernet_oper
+>>>>>>> 2260t/qualcommax_6.12
  
  static int __init proto_init(void)
  {
@@ -341,7 +349,11 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  
 --- a/net/ipv4/fib_trie.c
 +++ b/net/ipv4/fib_trie.c
+<<<<<<< HEAD
 @@ -3015,11 +3015,13 @@ static const struct seq_operations fib_r
+=======
+@@ -3037,11 +3037,13 @@ static const struct seq_operations fib_r
+>>>>>>> 2260t/qualcommax_6.12
  
  int __net_init fib_proc_init(struct net *net)
  {
@@ -357,7 +369,11 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  			fib_triestat_seq_show, NULL))
  		goto out2;
  
+<<<<<<< HEAD
 @@ -3030,17 +3032,21 @@ int __net_init fib_proc_init(struct net
+=======
+@@ -3052,17 +3054,21 @@ int __net_init fib_proc_init(struct net
+>>>>>>> 2260t/qualcommax_6.12
  	return 0;
  
  out3:
@@ -396,7 +412,11 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  }
 --- a/net/ipv4/route.c
 +++ b/net/ipv4/route.c
+<<<<<<< HEAD
 @@ -382,6 +382,9 @@ static struct pernet_operations ip_rt_pr
+=======
+@@ -378,6 +378,9 @@ static struct pernet_operations ip_rt_pr
+>>>>>>> 2260t/qualcommax_6.12
  
  static int __init ip_rt_proc_init(void)
  {

@@ -342,7 +342,11 @@ Signed-off-by: Daniel Golle <daniel@makrotopia.org>
 +		.of_match_table		= mtk_pcs_lynxi_of_match,
 +	},
 +	.probe = mtk_pcs_lynxi_probe,
+<<<<<<< HEAD
 +	.remove_new = mtk_pcs_lynxi_remove,
+=======
++	.remove = mtk_pcs_lynxi_remove,
+>>>>>>> 2260t/qualcommax_6.12
 +};
 +module_platform_driver(mtk_pcs_lynxi_driver);
 +

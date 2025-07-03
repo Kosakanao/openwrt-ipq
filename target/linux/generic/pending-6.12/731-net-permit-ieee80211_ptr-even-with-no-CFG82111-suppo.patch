@@ -19,7 +19,11 @@ Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 +++ b/include/linux/netdevice.h
 @@ -2224,7 +2224,7 @@ struct net_device {
  #if IS_ENABLED(CONFIG_AX25)
+<<<<<<< HEAD
  	struct ax25_dev	__rcu	*ax25_ptr;
+=======
+ 	void			*ax25_ptr;
+>>>>>>> 2260t/qualcommax_6.12
  #endif
 -#if IS_ENABLED(CONFIG_CFG80211)
 +#if IS_ENABLED(CONFIG_CFG80211_HEADERS)

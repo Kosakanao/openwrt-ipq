@@ -17,7 +17,11 @@ Signed-off-by: Karthikeyan Kathirvel <quic_kathirve@quicinc.com>
 
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
+<<<<<<< HEAD
 @@ -4993,12 +4993,6 @@ static int ath11k_station_disassoc(struc
+=======
+@@ -4991,12 +4991,6 @@ static int ath11k_station_disassoc(struc
+>>>>>>> 2260t/qualcommax_6.12
  			return ret;
  	}
  

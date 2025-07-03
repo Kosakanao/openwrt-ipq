@@ -32,7 +32,11 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  #ifdef CPTCFG_ATH9K_DEBUGFS
 --- a/drivers/net/wireless/ath/ath9k/gpio.c
 +++ b/drivers/net/wireless/ath/ath9k/gpio.c
+<<<<<<< HEAD
 @@ -16,12 +16,120 @@
+=======
+@@ -16,13 +16,140 @@
+>>>>>>> 2260t/qualcommax_6.12
  
  #include "ath9k.h"
  
@@ -43,6 +47,11 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
 +/***************/
 +/*  GPIO Chip  */
 +/***************/
++
++static inline int gpiochip_add(struct gpio_chip *gc)
++{
++	return gpiochip_add_data(gc, NULL);
++}
 +
 +/* gpio_chip handler : set GPIO to input */
 +static int ath9k_gpio_pin_cfg_input(struct gpio_chip *chip, unsigned offset)

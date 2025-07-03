@@ -30,7 +30,11 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  #endif /* _KOBJECT_H_ */
 --- a/lib/kobject_uevent.c
 +++ b/lib/kobject_uevent.c
+<<<<<<< HEAD
 @@ -699,6 +699,43 @@ int add_uevent_var(struct kobj_uevent_en
+=======
+@@ -705,6 +705,43 @@ int add_uevent_var(struct kobj_uevent_en
+>>>>>>> 2260t/qualcommax_6.12
  EXPORT_SYMBOL_GPL(add_uevent_var);
  
  #if defined(CONFIG_NET)

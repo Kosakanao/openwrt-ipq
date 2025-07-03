@@ -674,7 +674,15 @@ static void gpio_keys_irq_close(struct gpio_keys_button_dev *bdev)
 	}
 }
 
+<<<<<<< HEAD
 static void gpio_keys_remove(struct platform_device *pdev)
+=======
+#if LINUX_VERSION_CODE < KERNEL_VERSION(6,11,0)
+static int gpio_keys_remove(struct platform_device *pdev)
+#else
+static void gpio_keys_remove(struct platform_device *pdev)
+#endif
+>>>>>>> 2260t/qualcommax_6.12
 {
 	struct gpio_keys_button_dev *bdev = platform_get_drvdata(pdev);
 
@@ -684,6 +692,13 @@ static void gpio_keys_remove(struct platform_device *pdev)
 		gpio_keys_polled_close(bdev);
 	else
 		gpio_keys_irq_close(bdev);
+<<<<<<< HEAD
+=======
+
+#if LINUX_VERSION_CODE < KERNEL_VERSION(6,11,0)
+	return 0;
+#endif
+>>>>>>> 2260t/qualcommax_6.12
 }
 
 static struct platform_driver gpio_keys_driver = {

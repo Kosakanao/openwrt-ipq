@@ -8,7 +8,11 @@
  
  static const struct flow_dissector_key flow_keys_bonding_keys[] = {
  	{
+<<<<<<< HEAD
 @@ -5987,6 +5988,11 @@ static void bond_destructor(struct net_d
+=======
+@@ -5976,6 +5977,11 @@ static void bond_destructor(struct net_d
+>>>>>>> 2260t/qualcommax_6.12
  	if (bond->wq)
  		destroy_workqueue(bond->wq);
  
@@ -20,7 +24,11 @@
  	free_percpu(bond->rr_tx_counter);
  }
  
+<<<<<<< HEAD
 @@ -6542,6 +6548,13 @@ int bond_create(struct net *net, const c
+=======
+@@ -6531,6 +6537,13 @@ int bond_create(struct net *net, const c
+>>>>>>> 2260t/qualcommax_6.12
  
  	bond_work_init_all(bond);
  

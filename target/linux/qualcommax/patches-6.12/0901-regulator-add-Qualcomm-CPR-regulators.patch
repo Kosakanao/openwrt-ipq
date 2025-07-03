@@ -741,11 +741,19 @@ Signed-off-by: Robert Marko <robimarko@gmail.com>
 +	return cpr3_open_loop_regulator_register(pdev, ctrl);
 +}
 +
+<<<<<<< HEAD
 +static void cpr3_npu_regulator_remove(struct platform_device *pdev)
 +{
 +	struct cpr3_controller *ctrl = platform_get_drvdata(pdev);
 +
 +	cpr3_open_loop_regulator_unregister(ctrl);
+=======
++static int cpr3_npu_regulator_remove(struct platform_device *pdev)
++{
++	struct cpr3_controller *ctrl = platform_get_drvdata(pdev);
++
++	return cpr3_open_loop_regulator_unregister(ctrl);
+>>>>>>> 2260t/qualcommax_6.12
 +}
 +
 +static struct platform_driver cpr3_npu_regulator_driver = {
@@ -8667,9 +8675,15 @@ Signed-off-by: Robert Marko <robimarko@gmail.com>
 +		return 0;
 +
 +	if (soc_version_major > 1)
+<<<<<<< HEAD
 +		strscpy(prop_name, prop_name_v2, sizeof(prop_name_v2));
 +	else
 +		strscpy(prop_name, prop_name_def, sizeof(prop_name_def));
+=======
++		strscpy(prop_name, prop_name_v2, sizeof(prop_name));
++	else
++		strscpy(prop_name, prop_name_def, sizeof(prop_name));
+>>>>>>> 2260t/qualcommax_6.12
 +
 +	if (!of_find_property(vreg->of_node, prop_name, &len)) {
 +		cpr3_err(vreg, "property %s is missing\n", prop_name);
@@ -11664,7 +11678,11 @@ Signed-off-by: Robert Marko <robimarko@gmail.com>
 +		.of_match_table	= cpr4_regulator_match_table,
 +	},
 +	.probe		= cpr4_apss_regulator_probe,
+<<<<<<< HEAD
 +	.remove		= cpr4_apss_regulator_remove,
+=======
++	.remove_new	= cpr4_apss_regulator_remove,
+>>>>>>> 2260t/qualcommax_6.12
 +	.suspend	= cpr4_apss_regulator_suspend,
 +	.resume		= cpr4_apss_regulator_resume,
 +};

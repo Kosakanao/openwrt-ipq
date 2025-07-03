@@ -14,7 +14,11 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
 
 --- a/include/linux/module.h
 +++ b/include/linux/module.h
+<<<<<<< HEAD
 @@ -166,6 +166,7 @@ struct module_kobject *lookup_or_create_
+=======
+@@ -164,6 +164,7 @@ extern void cleanup_module(void);
+>>>>>>> 2260t/qualcommax_6.12
  
  /* Generic info of form tag = "info" */
  #define MODULE_INFO(tag, info) __MODULE_INFO(tag, tag, info)
@@ -22,7 +26,11 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  
  /* For userspace: you can also call me... */
  #define MODULE_ALIAS(_alias) MODULE_INFO(alias, _alias)
+<<<<<<< HEAD
 @@ -241,12 +242,12 @@ struct module_kobject *lookup_or_create_
+=======
+@@ -239,12 +240,12 @@ extern void cleanup_module(void);
+>>>>>>> 2260t/qualcommax_6.12
   * Author(s), use "Name <email>" or just "Name", for multiple
   * authors use multiple MODULE_AUTHOR() statements/lines.
   */
@@ -38,7 +46,11 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  /* Creates an alias so file2alias.c can find device table. */
  #define MODULE_DEVICE_TABLE(type, name)					\
  extern typeof(name) __mod_##type##__##name##_device_table		\
+<<<<<<< HEAD
 @@ -273,7 +274,9 @@ extern typeof(name) __mod_##type##__##na
+=======
+@@ -271,7 +272,9 @@ extern typeof(name) __mod_##type##__##na
+>>>>>>> 2260t/qualcommax_6.12
   */
  
  #if defined(MODULE) || !defined(CONFIG_SYSFS)
@@ -49,7 +61,11 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  #else
  #define MODULE_VERSION(_version)					\
  	MODULE_INFO(version, _version);					\
+<<<<<<< HEAD
 @@ -296,7 +299,7 @@ extern typeof(name) __mod_##type##__##na
+=======
+@@ -294,7 +297,7 @@ extern typeof(name) __mod_##type##__##na
+>>>>>>> 2260t/qualcommax_6.12
  /* Optional firmware file (or files) needed by the module
   * format is simply firmware file name.  Multiple firmware
   * files require multiple MODULE_FIRMWARE() specifiers */
@@ -88,7 +104,11 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  
 --- a/kernel/module/Kconfig
 +++ b/kernel/module/Kconfig
+<<<<<<< HEAD
 @@ -402,4 +402,11 @@ config MODULES_TREE_LOOKUP
+=======
+@@ -401,4 +401,11 @@ config MODULES_TREE_LOOKUP
+>>>>>>> 2260t/qualcommax_6.12
  	def_bool y
  	depends on PERF_EVENTS || TRACING || CFI_CLANG
  
@@ -151,6 +171,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	}
  
  	check_sec_ref(mod, &info);
+<<<<<<< HEAD
 @@ -1758,7 +1760,9 @@ static void add_header(struct buffer *b,
  	buf_printf(b, "#include <linux/export-internal.h>\n");
  	buf_printf(b, "#include <linux/compiler.h>\n");
@@ -176,6 +197,9 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	if (strstarts(mod->name, "tools/testing"))
  		buf_printf(b, "\nMODULE_INFO(test, \"Y\");\n");
 @@ -1886,11 +1892,13 @@ static void add_depends(struct buffer *b
+=======
+@@ -1886,11 +1888,13 @@ static void add_depends(struct buffer *b
+>>>>>>> 2260t/qualcommax_6.12
  
  static void add_srcversion(struct buffer *b, struct module *mod)
  {
@@ -189,7 +213,11 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  }
  
  static void write_buf(struct buffer *b, const char *fname)
+<<<<<<< HEAD
 @@ -1973,7 +1981,9 @@ static void write_mod_c_file(struct modu
+=======
+@@ -1973,7 +1977,9 @@ static void write_mod_c_file(struct modu
+>>>>>>> 2260t/qualcommax_6.12
  	add_exported_symbols(&buf, mod);
  	add_versions(&buf, mod);
  	add_depends(&buf, mod);

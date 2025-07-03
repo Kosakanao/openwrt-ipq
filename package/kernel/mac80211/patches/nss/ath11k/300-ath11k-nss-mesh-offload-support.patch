@@ -1014,7 +1014,11 @@ Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
 +#endif
 --- a/drivers/net/wireless/ath/ath11k/dp.h
 +++ b/drivers/net/wireless/ath/ath11k/dp.h
+<<<<<<< HEAD
 @@ -1438,15 +1438,29 @@ struct htt_ppdu_stats_user_common {
+=======
+@@ -1430,15 +1430,29 @@ struct htt_ppdu_stats_user_common {
+>>>>>>> 2260t/qualcommax_6.12
  	u32 host_opaque_cookie;
  } __packed;
  
@@ -1046,7 +1050,11 @@ Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
  #define HTT_PPDU_STATS_MAX_USERS	37
 --- a/drivers/net/wireless/ath/ath11k/dp_rx.c
 +++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+<<<<<<< HEAD
 @@ -1401,6 +1401,71 @@ static int ath11k_htt_tlv_ppdu_stats_par
+=======
+@@ -1410,6 +1410,71 @@ static int ath11k_htt_tlv_ppdu_stats_par
+>>>>>>> 2260t/qualcommax_6.12
  	return 0;
  }
  
@@ -1118,7 +1126,11 @@ Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
  static void
  ath11k_update_per_peer_tx_stats(struct ath11k *ar,
  				struct htt_ppdu_stats *ppdu_stats, u8 user)
+<<<<<<< HEAD
 @@ -1424,6 +1489,9 @@ ath11k_update_per_peer_tx_stats(struct a
+=======
+@@ -1433,6 +1498,9 @@ ath11k_update_per_peer_tx_stats(struct a
+>>>>>>> 2260t/qualcommax_6.12
  	if (!(usr_stats->tlv_flags & BIT(HTT_PPDU_STATS_TAG_USR_RATE)))
  		return;
  
@@ -1128,7 +1140,11 @@ Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
  	if (usr_stats->tlv_flags & BIT(HTT_PPDU_STATS_TAG_USR_COMPLTN_COMMON))
  		is_ampdu =
  			HTT_USR_CMPLTN_IS_AMPDU(usr_stats->cmpltn_cmn.flags);
+<<<<<<< HEAD
 @@ -1557,6 +1625,8 @@ ath11k_update_per_peer_tx_stats(struct a
+=======
+@@ -1566,6 +1634,8 @@ ath11k_update_per_peer_tx_stats(struct a
+>>>>>>> 2260t/qualcommax_6.12
  			ath11k_debugfs_sta_add_tx_stats(arsta, peer_stats, rate_idx);
  	}
  
@@ -1137,7 +1153,11 @@ Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
  	spin_unlock_bh(&ab->base_lock);
  	rcu_read_unlock();
  }
+<<<<<<< HEAD
 @@ -1677,6 +1747,69 @@ int ath11k_dp_htt_tlv_iter(struct ath11k
+=======
+@@ -1686,6 +1756,69 @@ int ath11k_dp_htt_tlv_iter(struct ath11k
+>>>>>>> 2260t/qualcommax_6.12
  	return 0;
  }
  
@@ -1207,7 +1227,11 @@ Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
  static int ath11k_htt_pull_ppdu_stats(struct ath11k_base *ab,
  				      struct sk_buff *skb)
  {
+<<<<<<< HEAD
 @@ -1695,6 +1828,15 @@ static int ath11k_htt_pull_ppdu_stats(st
+=======
+@@ -1704,6 +1837,15 @@ static int ath11k_htt_pull_ppdu_stats(st
+>>>>>>> 2260t/qualcommax_6.12
  	pdev_id = FIELD_GET(HTT_T2H_PPDU_STATS_INFO_PDEV_ID, msg->info);
  	ppdu_id = msg->ppdu_id;
  
@@ -1223,7 +1247,11 @@ Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
  	rcu_read_lock();
  	ar = ath11k_mac_get_ar_by_pdev_id(ab, pdev_id);
  	if (!ar) {
+<<<<<<< HEAD
 @@ -1762,6 +1904,12 @@ static int ath11k_htt_pull_ppdu_stats(st
+=======
+@@ -1771,6 +1913,12 @@ static int ath11k_htt_pull_ppdu_stats(st
+>>>>>>> 2260t/qualcommax_6.12
  		}
  	}
  
@@ -3337,6 +3365,7 @@ Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
  	ATH11K_DBG_WMI		= 0x00000002,
 --- a/local-symbols
 +++ b/local-symbols
+<<<<<<< HEAD
 @@ -173,6 +173,7 @@ ATH11K_DEBUGFS=
  ATH11K_TRACING=
  ATH11K_SPECTRAL=
@@ -3350,6 +3379,21 @@ Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
 @@ -13,6 +13,15 @@ config ATH11K
  
  	  If you choose to build a module, it'll be called ath11k.
+=======
+@@ -166,6 +166,7 @@ ATH11K=
+ ATH11K_AHB=
+ ATH11K_PCI=
+ ATH11K_NSS_SUPPORT=
++ATH11K_NSS_MESH_SUPPORT=
+ ATH11K_MEM_PROFILE_256M=
+ ATH11K_MEM_PROFILE_512M=
+ ATH11K_DEBUG=
+--- a/drivers/net/wireless/ath/ath11k/Kconfig
++++ b/drivers/net/wireless/ath/ath11k/Kconfig
+@@ -23,6 +23,15 @@ config ATH11K_NSS_SUPPORT
+ 
+ 	  If unsure, say Y to enable NSS offload support.
+>>>>>>> 2260t/qualcommax_6.12
  
 +config ATH11K_NSS_MESH_SUPPORT
 +	bool "QCA ath11k nss mesh support"
@@ -3360,6 +3404,11 @@ Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
 +
 +	  If unsure, say Y to enable NSS offload support.
 +
+<<<<<<< HEAD
  config ATH11K_NSS_SUPPORT
  	bool "QCA ath11k nss support"
+=======
+ config ATH11K_MEM_PROFILE_512M
+ 	bool "ath11k enable 512MB memory profile"
+>>>>>>> 2260t/qualcommax_6.12
  	depends on ATH11K

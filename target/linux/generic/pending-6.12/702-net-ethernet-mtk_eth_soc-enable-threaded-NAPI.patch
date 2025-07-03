@@ -10,7 +10,11 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
 
 --- a/drivers/net/ethernet/mediatek/mtk_eth_soc.c
 +++ b/drivers/net/ethernet/mediatek/mtk_eth_soc.c
+<<<<<<< HEAD
 @@ -5140,6 +5140,8 @@ static int mtk_probe(struct platform_dev
+=======
+@@ -5041,6 +5041,8 @@ static int mtk_probe(struct platform_dev
+>>>>>>> 2260t/qualcommax_6.12
  		dev_err(eth->dev, "failed to allocated dummy device\n");
  		goto err_unreg_netdev;
  	}

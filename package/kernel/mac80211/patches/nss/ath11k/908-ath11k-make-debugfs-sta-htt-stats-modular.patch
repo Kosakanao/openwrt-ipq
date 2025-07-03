@@ -120,7 +120,11 @@
  			    &fops_peer_ps_state);
 --- a/drivers/net/wireless/ath/ath11k/dp_rx.c
 +++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+<<<<<<< HEAD
 @@ -1715,8 +1715,10 @@ ath11k_update_per_peer_tx_stats(struct a
+=======
+@@ -1724,8 +1724,10 @@ ath11k_update_per_peer_tx_stats(struct a
+>>>>>>> 2260t/qualcommax_6.12
  		peer_stats->mu_pos   = mu_pos;
  		peer_stats->ru_tones = arsta->txrate.he_ru_alloc;
  
@@ -131,7 +135,11 @@
  	}
  
  	usr_stats->rate_stats_updated = true;
+<<<<<<< HEAD
 @@ -2162,7 +2164,9 @@ void ath11k_dp_htt_htc_t2h_msg_handler(s
+=======
+@@ -2171,7 +2173,9 @@ void ath11k_dp_htt_htc_t2h_msg_handler(s
+>>>>>>> 2260t/qualcommax_6.12
  		ath11k_htt_pull_ppdu_stats(ab, skb);
  		break;
  	case HTT_T2H_MSG_TYPE_EXT_STATS_CONF:
@@ -153,7 +161,11 @@
  #include "hw.h"
  #include "peer.h"
  #include "mac.h"
+<<<<<<< HEAD
 @@ -547,7 +549,9 @@ static void ath11k_dp_tx_cache_peer_stat
+=======
+@@ -554,7 +556,9 @@ static void ath11k_dp_tx_cache_peer_stat
+>>>>>>> 2260t/qualcommax_6.12
  void ath11k_dp_tx_update_txcompl(struct ath11k *ar, struct hal_tx_status *ts)
  {
  	struct ath11k_base *ab = ar->ab;
@@ -163,7 +175,11 @@
  	enum hal_tx_rate_stats_pkt_type pkt_type;
  	enum hal_tx_rate_stats_sgi sgi;
  	enum hal_tx_rate_stats_bw bw;
+<<<<<<< HEAD
 @@ -636,8 +640,10 @@ void ath11k_dp_tx_update_txcompl(struct
+=======
+@@ -643,8 +647,10 @@ void ath11k_dp_tx_update_txcompl(struct
+>>>>>>> 2260t/qualcommax_6.12
  			ath11k_mac_he_ru_tones_to_nl80211_he_ru_alloc(ru_tones);
  	}
  
@@ -187,7 +203,11 @@
  #endif
 --- a/local-symbols
 +++ b/local-symbols
+<<<<<<< HEAD
 @@ -170,6 +170,8 @@ ATH11K_MEM_PROFILE_256M=
+=======
+@@ -171,6 +171,8 @@ ATH11K_MEM_PROFILE_256M=
+>>>>>>> 2260t/qualcommax_6.12
  ATH11K_MEM_PROFILE_512M=
  ATH11K_DEBUG=
  ATH11K_DEBUGFS=

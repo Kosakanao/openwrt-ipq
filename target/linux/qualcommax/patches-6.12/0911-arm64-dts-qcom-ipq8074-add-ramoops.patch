@@ -1,6 +1,10 @@
 --- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
 +++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+<<<<<<< HEAD
 @@ -198,6 +198,13 @@
+=======
+@@ -198,6 +198,14 @@
+>>>>>>> 2260t/qualcommax_6.12
  			no-map;
  			reg = <0x0 0x51000000 0x0 0x100000>;
  		};
@@ -9,7 +13,12 @@
 +			compatible = "ramoops";
 +			reg = <0x0 0x51200000 0x0 0x100000>;
 +			no-map;
+<<<<<<< HEAD
 +			record-size = <0x1000>;
+=======
++			record-size = <0x4000>;
++			console-size = <0x4000>;
+>>>>>>> 2260t/qualcommax_6.12
 +		};
  	};
  

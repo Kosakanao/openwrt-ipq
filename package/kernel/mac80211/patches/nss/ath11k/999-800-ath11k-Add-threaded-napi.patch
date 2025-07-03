@@ -1,5 +1,6 @@
 --- a/drivers/net/wireless/ath/ath11k/ahb.c
 +++ b/drivers/net/wireless/ath/ath11k/ahb.c
+<<<<<<< HEAD
 @@ -387,6 +387,7 @@ static void ath11k_ahb_ext_irq_enable(st
  		struct ath11k_ext_irq_grp *irq_grp = &ab->ext_irq_grp[i];
  
@@ -9,6 +10,19 @@
  			irq_grp->napi_enabled = true;
  		}
 @@ -538,6 +539,7 @@ static int ath11k_ahb_config_ext_irq(str
+=======
+@@ -496,8 +496,7 @@ static int ath11k_ahb_ext_grp_napi_poll(
+ 	int work_done;
+ 
+ 	work_done = ath11k_dp_service_srng(ab, irq_grp, budget);
+-	if (work_done < budget) {
+-		napi_complete_done(napi, work_done);
++	if (work_done < budget && napi_complete_done(napi, work_done)) {
+ 		ath11k_ahb_ext_grp_enable(irq_grp);
+ 	}
+ 
+@@ -528,6 +527,7 @@ static int ath11k_ahb_config_ext_irq(str
+>>>>>>> 2260t/qualcommax_6.12
  	int irq;
  	int ret;
  	bool nss_offload;
@@ -16,7 +30,11 @@
  
  	/* TCL Completion, REO Dest, ERR, Exception and h2rxdma rings are offloaded
  	 * to nss when its enabled, hence don't enable these interrupts
+<<<<<<< HEAD
 @@ -555,6 +557,9 @@ static int ath11k_ahb_config_ext_irq(str
+=======
+@@ -545,9 +545,14 @@ static int ath11k_ahb_config_ext_irq(str
+>>>>>>> 2260t/qualcommax_6.12
  		if (!irq_grp->napi_ndev)
  			return -ENOMEM;
  
@@ -26,7 +44,16 @@
  		netif_napi_add(irq_grp->napi_ndev, &irq_grp->napi,
  			       ath11k_ahb_ext_grp_napi_poll);
  
+<<<<<<< HEAD
 @@ -620,6 +625,8 @@ static int ath11k_ahb_config_ext_irq(str
+=======
++		dev_set_threaded(irq_grp->napi_ndev, true);
++
+ 		for (j = 0; j < ATH11K_EXT_IRQ_NUM_MAX; j++) {
+ 			if (!nss_offload && ab->hw_params.ring_mask->tx[i] & BIT(j)) {
+ 				irq_grp->irqs[num_irq++] =
+@@ -610,6 +615,8 @@ static int ath11k_ahb_config_ext_irq(str
+>>>>>>> 2260t/qualcommax_6.12
  		}
  	}
  
@@ -37,6 +64,7 @@
  
 --- a/drivers/net/wireless/ath/ath11k/pcic.c
 +++ b/drivers/net/wireless/ath/ath11k/pcic.c
+<<<<<<< HEAD
 @@ -485,6 +485,7 @@ void ath11k_pcic_ext_irq_enable(struct a
  		struct ath11k_ext_irq_grp *irq_grp = &ab->ext_irq_grp[i];
  
@@ -46,6 +74,19 @@
  			irq_grp->napi_enabled = true;
  		}
 @@ -572,6 +573,7 @@ static int ath11k_pcic_ext_irq_config(st
+=======
+@@ -517,8 +517,7 @@ static int ath11k_pcic_ext_grp_napi_poll
+ 	int i;
+ 
+ 	work_done = ath11k_dp_service_srng(ab, irq_grp, budget);
+-	if (work_done < budget) {
+-		napi_complete_done(napi, work_done);
++	if (work_done < budget && napi_complete_done(napi, work_done)) {
+ 		for (i = 0; i < irq_grp->num_irq; i++)
+ 			enable_irq(irq_grp->ab->irq_num[irq_grp->irqs[i]]);
+ 	}
+@@ -563,6 +562,7 @@ static int ath11k_pcic_ext_irq_config(st
+>>>>>>> 2260t/qualcommax_6.12
  	u32 user_base_data = 0, base_vector = 0;
  	struct ath11k_ext_irq_grp *irq_grp;
  	unsigned long irq_flags;
@@ -53,7 +94,11 @@
  
  	ret = ath11k_pcic_get_user_msi_assignment(ab, "DP", &num_vectors,
  						  &user_base_data,
+<<<<<<< HEAD
 @@ -595,6 +597,9 @@ static int ath11k_pcic_ext_irq_config(st
+=======
+@@ -586,9 +586,14 @@ static int ath11k_pcic_ext_irq_config(st
+>>>>>>> 2260t/qualcommax_6.12
  			goto fail_allocate;
  		}
  
@@ -63,7 +108,16 @@
  		netif_napi_add(irq_grp->napi_ndev, &irq_grp->napi,
  			       ath11k_pcic_ext_grp_napi_poll);
  
+<<<<<<< HEAD
 @@ -649,6 +654,8 @@ static int ath11k_pcic_ext_irq_config(st
+=======
++		dev_set_threaded(irq_grp->napi_ndev, true);
++
+ 		/* tcl, reo, rx_err, wbm release, rxdma rings are offloaded to nss. */
+ 		if (ab->nss.enabled &&
+ 		    !(ab->hw_params.ring_mask->reo_status[i] ||
+@@ -640,6 +645,8 @@ static int ath11k_pcic_ext_irq_config(st
+>>>>>>> 2260t/qualcommax_6.12
  		ath11k_pcic_ext_grp_disable(irq_grp);
  	}
  
