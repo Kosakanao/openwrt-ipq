@@ -177,6 +177,7 @@ platform_do_upgrade() {
 	arcadyan,aw1000|\
 	cmcc,rm2-6|\
 	compex,wpq873|\
+	tplink,tl-er2260t|\
 	dynalink,dl-wrx36|\
 	edimax,cax1800|\
 	netgear,rax120v2|\

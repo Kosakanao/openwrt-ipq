@@ -6,6 +6,13 @@ board_config_update
 board=$(board_name)
 
 case "$board" in
+tplink,tl-er2260t)
+	ucidef_set_led_usbdev "usb" "USB" "green:usb" "1-1"
+	ucidef_set_led_netdev "sfp1-link" "SFP1 (Link)" "green:sfp1-10g" "10ge1" "link"
+	ucidef_set_led_netdev "sfp2-link" "SFP2 (Link)" "green:sfp2-10g" "10ge2" "link"
+	ucidef_set_led_netdev "sfp1-activity" "SFP1 (Activity)" "green:sfp1-act" "10ge1" "tx rx"
+	ucidef_set_led_netdev "sfp2-activity" "SFP2 (Activity)" "green:sfp2-act" "10ge2" "tx rx"
+	;;
 arcadyan,aw1000)
 	ucidef_set_led_netdev "5g" "5G" "green:5g" "wwan0"
 	ucidef_set_led_netdev "wan" "WAN" "green:internet" "wan"
